@@ -2,9 +2,6 @@ from functions_denoise import *
 from functions_compare import *
 from reading_dataset import *
 
-
-
-
 def improve_limb_leads (denoised_limb_leads_mat):
     shape = denoised_limb_leads_mat.shape
     assert shape[0] ==6
