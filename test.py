@@ -3,6 +3,12 @@ from functions_compare import *
 from reading_dataset import *
 from main import improve_limb_leads
 #%% Reading Dataset
+'''you can change the index or just import your own ECG
+    if you import your own ECG you have to convert it to numpy array first
+    then you have to devide six limb leads to have 6*n array including leads
+    I, II, III, aVR, aVL, aVF respectively in the your array
+    '''
+
 index=558
 ecg = read_ecg(index)
 mat = ecg.mat[:6,:]
