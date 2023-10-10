@@ -1,34 +1,33 @@
 from functions_denoise import *
 from functions_compare import *
 from reading_dataset import *
-
+from main import improve_limb_leads
 #%% Reading Dataset
-index= 1
+index=558
 ecg = read_ecg(index)
 mat = ecg.mat[:6,:]
 
 
-denoise_method='wl'
-wavelet_type = 'sym8'
-
 #%% add some noise
-
-artificial_bw_noise = create_noise(mat , noise_method='Artificial_bw_noise',snr_db=6)
+artificial_bw_noise = create_noise(mat , noise_method='Artificial_bw_noise',snr_db=6) 
 noisy_mat = mat+ artificial_bw_noise
 
 #%% Denoise
-# emd_denoised= denoise_emd_baseline(mat, cemd=False)
-wavelet_denoised= denoise_wavelet(mat, wavelet_type='sym8', wavelet_denoise_treshold=0.13)
-
+denoise_method='emd' # 'emd' or 'wl'
+if denoise_method =='wl':
+    primary_denoised= denoise_wavelet(noisy_mat, wavelet_type='sym8', wavelet_denoise_treshold=0.13)
+elif denoise_method =='emd':    
+    primary_denoised= denoise_emd_baseline(noisy_mat, cemd=False)
 
 #%% Improve Denoised limb leads
-from main import improve_limb_leads
-improved_leads=improve_limb_leads(wavelet_denoised)
+improved_leads=improve_limb_leads(primary_denoised)
 
 #%% plotting ECG
-
-plot_ecg(ecg , just_limb=True , time=(0,8))
-plot_mat(wavelet_denoised, just_limb=True,time=(0,8))
+plot_mat(mat, just_limb=True, time=(0,8))
+plt.savefig(f'dataset\\{index} -1 mat_ecg ')
+plot_mat(noisy_mat, just_limb=True , time= (0,8))
+plt.savefig(f'dataset\\{index} -2 noisy_ecg ')
+plot_mat(primary_denoised, just_limb=True,time=(0,8))
+plt.savefig(f'dataset\\{index} -3 denoise ')
 plot_mat(improved_leads, just_limb=True,time=(0,8))
-
-plt.show()
+plt.savefig(f'dataset\\{index} -4 improve ')
