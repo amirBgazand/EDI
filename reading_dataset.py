@@ -127,12 +127,13 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
         mat=y_new
     else:    
         leads=['I','II','III','aVR','aVL','aVF','V1','V2','V3','V4','V5','V6']     
-        
+
+    mat=mat/1000    
     if just_limb==False:   
         fig, ax = plt.subplots(6,2) 
         for i in range (6):
             for j in range (2):
-                y=mat[i+6*j,:]/1000
+                y=mat[i+6*j,:]
                 ax[i,j].plot(x,y)
                 ax[i,j].set_ylabel (leads[i+6*j]  )              
 
@@ -151,10 +152,10 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
         fig, ax = plt.subplots(6)
         j=0
         for i in range (6):
-            y=mat[i,:]/1000
+            y=mat[i,:]
             ax[i].plot(x,y)
             ax[i].set_ylabel(leads[i] , fontdict={'fontfamily':'serif' ,'fontsize':11, })
-            ax[i].set_yticklabels(ax[i].get_xticks(), rotation=0, size=9)
+            # ax[i].set_yticklabels(ax[i].get_xticks(), rotation=0, size=9)
             if i != 5:
                 ax[i].set_xticks([])
             
