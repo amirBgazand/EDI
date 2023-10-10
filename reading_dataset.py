@@ -84,7 +84,7 @@ def dx2diagnosis(dx):
 
 
 def plot_ecg (ecg,time=None,channels=None ,folder_number=5 
-              , form='better', just_limb=False,subtitle=True):
+              , custom_order=True , just_limb=False,subtitle=True):
     
     mat=ecg.mat
        
@@ -93,7 +93,7 @@ def plot_ecg (ecg,time=None,channels=None ,folder_number=5
     if channels != None:
         subplot(channels,ecg,mat)
     else:
-        plot_mat(mat,time ,form , just_limb=just_limb)
+        plot_mat(mat,time ,custom_order , just_limb=just_limb)
         if subtitle ==True:
             diagnosis=dx2diagnosis(ecg.dx)
             plt.suptitle(f'index:{ecg.index} , age:{ecg.age} , sex:{ecg.sex} , dx:{str(diagnosis)} '
@@ -151,13 +151,16 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
     else:
         fig, ax = plt.subplots(6)
         j=0
+        mat=mat[:6,:]
+        maxy=y_of_time.max()
+        miny=y_of_time.min()
         for i in range (6):
             y=mat[i,:]
             ax[i].plot(x,y)
             ax[i].set_ylabel(leads[i] , fontdict={'fontfamily':'serif' ,'fontsize':11, })
             # ax[i].set_yticklabels(ax[i].get_xticks(), rotation=0, size=9)
-            if i != 5:
-                ax[i].set_xticks([])
+            # if i != 5:
+            #     ax[i].set_xticks([])
             
             small_vertical=np.arange(0,long ,0.04)  
             big_vertical=np.arange(0,long,0.2)
