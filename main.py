@@ -13,5 +13,5 @@ if __name__ == "__main__":
     ecg = read_ecg(1)
     mat = ecg.mat[0:6, :]
     improved_ecg = improve_limb_leads(mat)
-    plot_mat(improved_ecg, just_limb=True)
+    plot_mat(improved_ecg, just_limb=True, title='improved signals')
     plt.show()
