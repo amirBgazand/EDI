@@ -100,7 +100,7 @@ def plot_ecg (ecg,time=None,channels=None ,folder_number=5
                           , fontsize=9 )
 
 
-def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=False):
+def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=False,title=None):
     
     samples= mat.shape[1]
     long=samples/sample_rate
@@ -131,6 +131,8 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
     mat=mat/1000    
     if just_limb==False:   
         fig, ax = plt.subplots(6,2) 
+        if title!=None:
+            plt.title (f'{title}')
         for i in range (6):
             for j in range (2):
                 y=mat[i+6*j,:]
@@ -150,6 +152,8 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
                 ax[i,j].axis([time[0], time[1],miny,maxy])
     else:
         fig, ax = plt.subplots(6)
+        if title!=None:
+            fig.suptitle (f'{title}' , fontdict={'fontfamily':'serif'})
         j=0
         mat=mat[:6,:]
         maxy=y_of_time.max()
@@ -172,8 +176,9 @@ def plot_mat (mat, time=None, custom_order=True, sample_rate=500, just_limb=Fals
             [ax[i].axhline(y=k, linestyle='--',linewidth=0.2 ) for k in small_horizontal]
             [ax[i].axhline(y=k, linestyle='--',linewidth=0.5 ) for k in big_horizontal]
             ax[i].axis([time[0], time[1],miny,maxy])
-
-    plt.subplots_adjust(left=0.11, bottom=0.1, right=0.95, top=0.95, wspace=.12, hspace=0.22)       
+    
+    plt.subplots_adjust(left=0.11, bottom=0.1, right=0.95, top=0.93, wspace=.12, hspace=0.22)       
+    
 
 
 
