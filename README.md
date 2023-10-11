@@ -12,7 +12,7 @@ In this repository, you'll find a data folder containing this project's dataset.
 3. After downloading the dataset, make sure to organize it as follows:
 
     ```
-    ├── data
+    ├── dataset
     │   └── 6-PhysioNetChallenge2020_Training_E
     │       ├── All_HEA_Files_here
     │       └── All_MAT_Files_here
