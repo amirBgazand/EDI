@@ -3,7 +3,7 @@
 ## Data Folder
 
 
-In this repository, you'll find a data folder containing this project's dataset. To use this dataset, follow these steps:
+To use the dataset used in this project, follow these steps:
 
 1. Download the dataset from the [PhysioNet Challenge 2020](https://physionet.org/content/challenge-2020/1.0.2/) website.
 
@@ -20,5 +20,5 @@ In this repository, you'll find a data folder containing this project's dataset.
 
    You should place all the `.hea` and `.mat` files in their respective folders within the `6-PhysioNetChallenge2020_Training_E` directory.
 
-Now your data is ready to be used for your project.
+Now your data is ready to be used for the project.
 
