@@ -4,7 +4,10 @@
 
 This repository contains the implementation of a vector-based post-processing method designed to improve ECG denoising techniques by re-establishing lead relationships. The method outlined here is based on the research presented in the article titled ["Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships"](https://ieeexplore.ieee.org/abstract/document/10330088/authors#authors).
 
+
 ![Illustration of the procedure](images/overview.png)
+
+*Figure 1: Step A) Denoising noisy ECG limb leads by an arbitrary system. Step B) Calculating 15 cardiac vectors from the denoised signals, then deriving primary average points for limb leads. These primary averages determine weights for the six limb leads, resulting in the final weighted average cardiac vector. Step C) By reconstructing lead values over time, our method effectively reduces limb lead noise.*
 
 
 ## Abstract
