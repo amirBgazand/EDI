@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains the implementation of a vector-based post-processing method designed to improve ECG denoising techniques by re-establishing lead relationships. The method outlined here is based on the research presented in the article titled ["Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships"](https://ieeexplore.ieee.org/abstract/document/10330088/authors#authors).
+This repository contains the implementation of a vector-based post-processing method designed to improve ECG denoising techniques by re-establishing lead relationships. The method outlined here is based on the research presented in the article titled ["Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships"](https://ieeexplore.ieee.org/abstract/document/10330088/).
 <br>
 <br>
 
