@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="google-site-verification" content="P80YmqWBAvbLZu8KdJ7Hf092OtTw5PvYEgbj5uMIADc" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships | EDI</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://amirbgazand.github.io/EDI/" />
+<meta property="og:url" content="https://amirbgazand.github.io/EDI/" />
+<meta property="og:site_name" content="EDI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships","name":"EDI","url":"https://amirbgazand.github.io/EDI/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/EDI/assets/css/style.css?v=3b509850e74e51eb95be18b584fdcedc51771c5b">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/EDI/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://amirbgazand.github.io/EDI/">EDI</a></h1>
+      
+
+      <h1 id="vector-based-post-processing-method-for-improving-ecg-denoising-techniques-by-re-establishing-lead-relationships">Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships</h1>
+
+<p><br /></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>This repository contains the implementation of a vector-based post-processing method designed to improve ECG denoising techniques by re-establishing lead relationships. The method outlined here is based on the research presented in the article titled <a href="https://ieeexplore.ieee.org/abstract/document/10330088/authors#authors">“Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships”</a>.
+<br />
+<br /></p>
+
+<h2 id="abstract">Abstract</h2>
+<p>Reducing noise in electrocardiogram (ECG) signals is essential for accurate diagnosis and monitoring of cardiac diseases. Existing denoising methods often denoise leads individually and distort Einthoven’s law due to their limitations in distinguishing between noise and signal components across all leads. In this paper, a new method has been proposed that not only restores the Einthoven relationship but also effectively reduces the remaining noises of the denoised signals. We introduced the Weighted Average Cardiac Vector, calculated from denoised signals, and used it to reconstruct lead signals. Our method is applicable to all denoising processes to improve the denoised limb lead values and reduce the error signals. In experiments involving empirical mode decomposition (EMD) and wavelet transform, our post-processing achieved an average noise reduction of 28.6% and 10.8%, respectively. To assess our method in practice, we build two CNN-based diagnosis detection models (standard and ResNet-18). When our method was used alongside the wavelet transform, the standard CNN’s accuracy improved from 63% to 70%, while the ResNet’s accuracy increased from 73.31% to 77.41%. In the case of EMD, our method enhanced the standard CNN’s accuracy from 79.8% to 84.5% and the ResNet’s accuracy from 89.78% to 93.84%. These promising results recommend our algorithm as a valuable post-processing unit for denoising systems.
+<br />
+<br /></p>
+
+<h2 id="what-we-have-done-in-a-nutshell">What we have done in a nutshell</h2>
+
+<p>There is a rule in ECG limb lead signals named Einthoven’s law. This law clarifies that :</p>
+
+\[\begin{flalign}
+&amp; \text{lead I} + \text{lead III} = \text{lead II} &amp;
+\end{flalign}\]
+
+<p>and</p>
+
+\[\begin{flalign}    
+&amp; \text{lead avR} + \text{lead aVL} + \text{lead aVF} = 0 &amp;
+\end{flalign}\]
+
+<p>We discovered this law is only established before denoising techniques. However, the uniformity property and Einthoven’s law are invalid when we use denoising algorithms. We have shown this in the article. Denoising algorithms can mistakenly remove crucial heart signals while leaving some noise due to their inability to precisely distinguish noise from true signals. 
+Here, we utilize the discrepancy of the denoised curves to obtain a single curve and reproduce all leads, in which not only the mathematical relationship between leads is re-established, but also the noise of the leads is significantly reduced after any arbitrary denoising process. Table I summarizes the relationships between the frontal leads before and after denoising and after applying our post-processing method.</p>
+
+<p><br /></p>
+
+<p><img src="/EDI/images/overview.png" alt="Illustration of the procedure" />
+<em>Figure 1: Step A) Denoising noisy ECG limb leads by an arbitrary system. Step B) Calculating 15 cardiac vectors from the denoised signals, then deriving primary average points for limb leads. These primary averages determine weights for the six limb leads, resulting in the final weighted average cardiac vector. Step C) By reconstructing lead values over time, our method effectively reduces limb lead noise.</em></p>
+
+<p><br /></p>
+
+<hr />
+<div align="center">
+  <strong>WHAT IS YOUR DENOISING TECHNIQUE? IT DOES NOT MATTER; USE OUR POSTPROCESSING ALGORITHM TO IMPROVE IT. </strong>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="data-folder">Data Folder</h2>
+
+<p>To use the dataset used in this project, follow these steps:</p>
+
+<ol>
+  <li>
+    <p>Download the dataset from the <a href="https://physionet.org/content/challenge-2020/1.0.2/">PhysioNet Challenge 2020</a> website.</p>
+  </li>
+  <li>
+    <p>The G12EC dataset can be found in the <code class="language-plaintext highlighter-rouge">training/georgia</code> directory on the provided link.</p>
+  </li>
+  <li>
+    <p>After downloading the dataset, make sure to organize it as follows:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ├── dataset
+ │   └── 6-PhysioNetChallenge2020_Training_E
+ │       ├── All_HEA_Files_here
+ │       └── All_MAT_Files_here
+</code></pre></div>    </div>
+
+    <p>You should place all the <code class="language-plaintext highlighter-rouge">.hea</code> and <code class="language-plaintext highlighter-rouge">.mat</code> files in their respective folders within the <code class="language-plaintext highlighter-rouge">6-PhysioNetChallenge2020_Training_E</code> directory.</p>
+  </li>
+</ol>
+
+<p>Now your data is ready to be used for the project.
+<br /></p>
+
+<h2 id="citation">Citation</h2>
+
+<p>If you find this work helpful, please consider citing:</p>
+
+<p>A. Ghafari, N. Pourjafari and A. Ghaffari, “Vector Based Post-Processing Method for Improving ECG Denoising Techniques by Re-establishing lead Relationships,” in <em>IEEE Transactions on Instrumentation and Measurement</em>, doi: <a href="https://ieeexplore.ieee.org/document/10330088">10.1109/TIM.2023.3335528</a></p>
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/amirBgazand/EDI/edit/main/README.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
