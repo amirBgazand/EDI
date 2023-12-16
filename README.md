@@ -37,10 +37,29 @@ $$
 We discovered this law is only established before denoising techniques. However, the uniformity property and Einthoven's law are invalid when we use denoising algorithms. We have shown this in the article. Denoising algorithms can mistakenly remove crucial heart signals while leaving some noise due to their inability to precisely distinguish noise from true signals. 
 Here, we utilize the discrepancy of the denoised curves to obtain a single curve and reproduce all leads, in which not only the mathematical relationship between leads is re-established, but also the noise of the leads is significantly reduced after any arbitrary denoising process. Table I summarizes the relationships between the frontal leads before and after denoising and after applying our post-processing method.
 
-<br>
+<be>
 
-![Illustration of the procedure](images/overview.png)
-*Figure 1: Step A) Denoising noisy ECG limb leads by an arbitrary system. Step B) Calculating 15 cardiac vectors from the denoised signals, then deriving primary average points for limb leads. These primary averages determine weights for the six limb leads, resulting in the final weighted average cardiac vector. Step C) By reconstructing lead values over time, our method effectively reduces limb lead noise.*
+The proposed method aims to enhance denoising systems based on cardiac vectors derived from pairs of leads in ECG signals. The process involves three main steps:
+
+1. **Step A - Denoising:**
+   - Utilizes any arbitrary denoising technique (like wavelet transform or EMD) to remove noise from the six limb leads, producing denoised frontal limb lead values.
+
+2. **Step B - Cardiac Vector Calculation:**
+   - Constructs 15 cardiac vectors from the denoised lead values.
+   - Aligns these vectors and calculates primary average points for each lead pair.
+   - Determines weights for the leads based on proximity and variance, resulting in a fianl WEIGHTED AVERAGE CARDIAC VECTOR.
+
+3. **Step C - Reconstruction:**
+   - Projects the improved cardiac vector onto the frontal plane.
+   - Derives denoised limb lead values by projecting this vector onto the limb lead direction over time.
+     
+This method intends to enhance denoising accuracy by aligning and aggregating information from multiple leads, ultimately improving the quality of ECG signals by minimizing noise across limb leads.
+
+read the full article ["here"](https://ieeexplore.ieee.org/abstract/document/10330088/). 
+
+<p align="center">
+  <img src="images/overview.png" alt="Illustration of the procedure" width="800">
+</p>
 
 <br>
 
@@ -56,8 +75,9 @@ Here, we utilize the discrepancy of the denoised curves to obtain a single curve
 <br>
 Here is an example of our improvement algorithm. In this case, artificial bw noise was added to a clean ECG and then denoised using an EMD denoising process. Although the denoised signals (Fig. 12c) still contained some errors compared to the clean signals, our algorithm significantly reduced these errors in leads I, -aVR, and lead III. As a result, the RMSE was reduced by 52%.
 
-![An example of our improvement algorithm](images/result1.png)
-
+<p align="center">
+  <img src="images/result1.png" alt="An example of our improvement algorithm" width="600">
+</p>
 
       
 ## Data Folder
