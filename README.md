@@ -73,6 +73,7 @@ read the full article ["here"](https://ieeexplore.ieee.org/abstract/document/103
 
 <br>
 <br>
+
 ## Example
 Here is an example of our improvement algorithm. In this case, artificial bw noise was added to a clean ECG and then denoised using an EMD denoising process. Although the denoised signals (Fig. 12c) still contained some errors compared to the clean signals, our algorithm significantly reduced these errors in leads I, -aVR, and lead III. As a result, the RMSE was reduced by 52%.
 
