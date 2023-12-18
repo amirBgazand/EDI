@@ -3,10 +3,13 @@ from functions_compare import *
 from reading_dataset import *
 from main import improve_limb_leads
 #%% Reading Dataset
-'''you can change the index or just import your own ECG
-    if you import your own ECG you have to convert it to numpy array first
-    then you have to devide six limb leads to have 6*n array including leads
-    I, II, III, aVR, aVL, aVF respectively in the your array
+''' 
+    Step by step guideline
+    You have the option to change the index or import your own ECG.
+    If importing your own ECG, begin by converting it to a numpy array.
+    Next, divide the six limb leads to create an array with 6*n values, encompassing
+    the leads I, II, III, aVR, aVL, and aVF respectively within your array.
+    
     '''
 
 index=558
@@ -14,18 +17,18 @@ ecg = read_ecg(index)
 mat = ecg.mat[:6,:]
 
 
-#%% add some noise
+#%% 1-Add some noise
 artificial_bw_noise = create_noise(mat , noise_method='Artificial_bw_noise',snr_db=6) 
 noisy_mat = mat+ artificial_bw_noise
 
-#%% Denoise
+#%% 2-Denoise
 denoise_method='emd' # 'emd' or 'wl'
 if denoise_method =='wl':
     primary_denoised= denoise_wavelet(noisy_mat, wavelet_type='sym8', wavelet_denoise_treshold=0.13)
 elif denoise_method =='emd':    
     primary_denoised= denoise_emd_baseline(noisy_mat, cemd=False)
 
-#%% Improve Denoised limb leads
+#%% 3- Reconstruct Improved Denoised limb leads
 improved_leads=improve_limb_leads(primary_denoised)
 
 #%% plotting ECG
