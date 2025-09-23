@@ -8,10 +8,9 @@ from emd.sift import ensemble_sift
 
 
 def denoising_data_emd (mat,sd_tresh=0.05 ):
-  
-    
+     
     number_of_leads=mat.shape[0]
-    
+
     number_of_steps=mat.shape[1]
     emd_imf_opts = {'sd_thresh': sd_tresh}
     
