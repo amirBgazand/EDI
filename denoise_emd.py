@@ -30,8 +30,3 @@ def denoising_data_emd (mat,sd_tresh=0.05 ):
     
     return (emd_mat, complete_emd_mat)
             
-
-
-
-
-
